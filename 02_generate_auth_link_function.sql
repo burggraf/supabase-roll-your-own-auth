@@ -20,9 +20,11 @@ begin
         content INTO retval
     FROM
         http (('POST', 
-        SUPABASE_API_URL || '/auth/v1/admin/generate_link?apikey=' || SUPABASE_SERVICE_KEY,
-        ARRAY[http_header ('Authorization', 
-        'Bearer ' || SUPABASE_SERVICE_KEY)], 
+        SUPABASE_API_URL || '/auth/v1/admin/generate_link',
+        ARRAY[
+            http_header ('Authorization', 'Bearer ' || SUPABASE_SERVICE_KEY),
+            http_header ('apikey', SUPABASE_SERVICE_KEY)
+        ],
         'application/json', 
         payload::text
     ));

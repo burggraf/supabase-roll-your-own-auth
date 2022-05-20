@@ -14,6 +14,7 @@ REVOKE ALL ON TABLE private.keys FROM PUBLIC;
 
 -- [SUPABASE_SERVICE_KEY]
 -- Supabase Dashboard / settings / api / sevice_role (secret)
+
 ************************************************************************
 *** NOTE: the service_role key is sensitive, DO NOT SHARE IT PUBICLY ***
 ************************************************************************/
