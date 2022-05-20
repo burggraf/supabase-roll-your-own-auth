@@ -8,7 +8,6 @@ declare
     retval text;
     SUPABASE_API_URL text;
     SUPABASE_SERVICE_KEY text;
-    SUPABASE_API_KEY text;
 begin
 
     SELECT value::text INTO SUPABASE_API_URL FROM private.keys WHERE key = 'SUPABASE_API_URL';
@@ -17,9 +16,6 @@ begin
     SELECT value::text INTO SUPABASE_SERVICE_KEY FROM private.keys WHERE key = 'SUPABASE_SERVICE_KEY';
     IF NOT found THEN RAISE 'missing entry in private.keys: SUPABASE_SERVICE_KEY'; END IF;
 
-    SELECT value::text INTO SUPABASE_API_KEY FROM private.keys WHERE key = 'SUPABASE_API_KEY';
-    IF NOT found THEN RAISE 'missing entry in private.keys: SUPABASE_API_KEY'; END IF;
-
     SELECT
         content INTO retval
     FROM
@@ -27,7 +23,7 @@ begin
         SUPABASE_API_URL || '/auth/v1/admin/generate_link',
         ARRAY[
             http_header ('Authorization', 'Bearer ' || SUPABASE_SERVICE_KEY),
-            http_header ('apikey', SUPABASE_API_KEY)
+            http_header ('apikey', SUPABASE_SERVICE_KEY)
         ],
         'application/json', 
         payload::text

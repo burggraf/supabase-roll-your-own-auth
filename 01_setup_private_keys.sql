@@ -15,14 +15,10 @@ REVOKE ALL ON TABLE private.keys FROM PUBLIC;
 -- [SUPABASE_SERVICE_KEY]
 -- Supabase Dashboard / settings / api / sevice_role (secret)
 
--- [SUPABASE_API_KEY]
--- Supabase Dashboard / settings / api / anon (public)
-
 ************************************************************************
 *** NOTE: the service_role key is sensitive, DO NOT SHARE IT PUBICLY ***
 ************************************************************************/
 
 INSERT INTO private.keys (key, value) values ('SUPABASE_API_URL', '[SUPABASE_API_URL]');
 INSERT INTO private.keys (key, value) values ('SUPABASE_SERVICE_KEY', '[SUPABASE_SERVICE_KEY]');
-INSERT INTO private.keys (key, value) values ('SUPABASE_API_KEY', '[SUPABASE_API_KEY]');
 
